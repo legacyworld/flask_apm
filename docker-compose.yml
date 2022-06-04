@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+
+  web:
+    image: legacyworld/nginx-proxy-test_web
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: web
+    ports:
+      - 80:80
+    volumes:
+      - ./web/html:/usr/share/nginx/html
+
+  app:
+    image: legacyworld/nginx-proxy-test_app
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: app
+    ports:
+      - 8080:8080
+    volumes:
+      - ./app/src:/src
